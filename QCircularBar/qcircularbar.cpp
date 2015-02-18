@@ -1,6 +1,23 @@
+/**********************************************************************************/
+/*                                                                                */
+/* Project Open-GUI                                                               */
+/*                                                                                */
+/* Copyright (c) by Paolo Sereno <paolo.sereno@open-gui.eu> All rights reserved.  */
+/*                                                                                */
+/* This library is free software; you can redistribute it and/or                  */
+/* modify it under the terms of the GNU Lesser General Public                     */
+/* License as published by the Free Software Foundation; either                   */
+/* version 3.0 of the License, or (at your option) any later version.             */
+/* This library is distributed in the hope that it will be useful,                */
+/* but WITHOUT ANY WARRANTY; without even the implied warranty of                 */
+/* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU               */
+/* Lesser General Public License for more details.                                */
+/* You should have received a copy of the GNU Lesser General Public               */
+/* License along with this library.                                               */
+/*                                                                                */
+/**********************************************************************************/
+
 #include "qcircularbar.h"
-
-
 #include <QtGlobal>
 #include <QtGui>
 #include <QPainter>
@@ -9,37 +26,16 @@
 /*!
   \mainpage QCircularBar - A custom widget plugin for Qt 4.x
 
-  The QMeter widget is a custom widget plugin for Qt Designer.\n
-  It requires the Qt GUI library from Troll Tech AS.
-
-  \image html qmeter.jpg
+  The QCircularBar widget is a custom widget plugin for Qt Designer/Qt Creator.\n
+  It requires the Qt GUI library.
 
   \section homepage Project page
-  The QMeter page is hosted at
-    <a href="http://www.sereno-online.com/qt4lab/qmeter">sereno-online.com</a>
-
-  \section license License
-    QMeter is distributed under the terms of the \ref GPL v2.
-
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation version 2 of the license
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the
-    Free Software Foundation, Inc.,
-    59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
-
-  \section downloads Downloads
-   You can download QMeter at <a href="http://www.qt-apps.org">Qt-apps.org</a>.
+  The QCircularBar page is hosted at
+    <a href="http://www.open-gui.eu</a>
 
   \section credits Credits:
   \par Author:
     P. Sereno
-
 */
 
 
@@ -78,7 +74,6 @@ QCircularBar::QCircularBar(QWidget *parent)
 }
 
 
-
 QCircularBar::~QCircularBar()
 {
     delete m_lcd;
@@ -96,11 +91,13 @@ int QCircularBar::digits(int val)
        return digits;
 }
 
+
 void QCircularBar::setBarSize(int barSize)
 {
     m_barSize=barSize;
     update();
 }
+
 
 void QCircularBar::setValue(double value)
 {
@@ -175,6 +172,7 @@ int QCircularBar::digitCount() const
         return 0;
 }
 
+
 void QCircularBar::setValue(int value)
 {
    setValue((double)value);
@@ -186,6 +184,7 @@ void QCircularBar::setMinValue(double value)
    m_minValue=value;
    update();
 }
+
 
 void QCircularBar::setMinValue(int value)
 {
@@ -263,6 +262,7 @@ void QCircularBar::resizeEvent(QResizeEvent *event)
     m_lcd->setGeometry(width()/2-width()/4,height()/2-height()/6,width()/2,height()/3);
 }
 
+
 void QCircularBar::changeEvent(QEvent *event)
 {
     if(!isEnabled())
@@ -274,6 +274,7 @@ void QCircularBar::changeEvent(QEvent *event)
     else
         setValue(value());
 }
+
 
 void QCircularBar::paintEvent(QPaintEvent *event)
 {
@@ -300,7 +301,6 @@ void QCircularBar::paintEvent(QPaintEvent *event)
 }
 
 
-
 void QCircularBar::setCoverGlassEnabled(bool enable)
 {
     m_coverGlassEnabled=enable;
@@ -318,11 +318,13 @@ void QCircularBar::setSteps(int nSteps)
         nSteps=1;
 }
 
+
 void QCircularBar::setStartAngle(int value)
 {
     m_startAngle=value;
     update();
 }
+
 
 void QCircularBar::setEndAngle(int value)
 {
@@ -346,6 +348,7 @@ void QCircularBar::setForeground(QColor newForeColor)
 
     update();
 }
+
 
 void QCircularBar::setBackground(QColor newBackColor)
 {
@@ -385,6 +388,7 @@ void QCircularBar::setThresholdEnabled(bool enable)
   m_thresholdEnabled=enable;
   update();
 }
+
 
 void QCircularBar::setNumericIndicatorEnabled(bool enable)
 {
