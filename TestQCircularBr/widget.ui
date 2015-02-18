@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Widget</class>
+ <widget class="QWidget" name="Widget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>288</width>
+    <height>386</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Widget</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(0, 0, 0);</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QCircularBar" name="qCircularBar">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="toolTip">
+        <string>Meter</string>
+       </property>
+       <property name="whatsThis">
+        <string>Meter widget</string>
+       </property>
+       <property name="value">
+        <double>0.000000000000000</double>
+       </property>
+       <property name="minValue">
+        <double>0.000000000000000</double>
+       </property>
+       <property name="maxValue">
+        <double>10000.000000000000000</double>
+       </property>
+       <property name="threshold">
+        <double>8000.000000000000000</double>
+       </property>
+       <property name="label">
+        <string>RPM</string>
+       </property>
+       <property name="startAngle">
+        <number>210</number>
+       </property>
+       <property name="endAngle">
+        <number>-30</number>
+       </property>
+       <property name="foreground">
+        <color>
+         <red>242</red>
+         <green>156</green>
+         <blue>6</blue>
+        </color>
+       </property>
+       <property name="enableThreshold" stdset="0">
+        <bool>true</bool>
+       </property>
+       <property name="enableNumericIndicator" stdset="0">
+        <bool>true</bool>
+       </property>
+       <property name="circularBarEnabled">
+        <bool>true</bool>
+       </property>
+       <property name="coverGlassEnabled">
+        <bool>false</bool>
+       </property>
+       <property name="digitCount">
+        <number>5</number>
+       </property>
+       <property name="barSize">
+        <number>5</number>
+       </property>
+       <property name="units" stdset="0">
+        <string>Km/h</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSlider" name="horizontalSlider">
+       <property name="maximum">
+        <number>10000</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>QCircularBar</class>
+   <extends>QWidget</extends>
+   <header>qcircularbar.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>horizontalSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>qCircularBar</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>225</x>
+     <y>264</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>210</x>
+     <y>105</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
