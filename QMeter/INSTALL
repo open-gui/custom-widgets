@@ -1,0 +1,21 @@
+		INSTALLING your custom widget plugin
+
+
+1. Uncompress the file info a working directory
+
+2. Type qmake <plugin_name.pro>
+
+3. Type make
+
+4. Type make install
+
+5. That's all, your Qt custom widget plugin is installed. You can run Qt Designer
+   and you will find the plugin icon in Designer left tollbar
+
+
+
+I hope you will enjoy using the plugin. Good luck!
+
+
+
+		
