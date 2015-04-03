@@ -46,6 +46,7 @@ class QCircularBar : public QWidget
     Q_PROPERTY(double threshold READ threshold WRITE setThreshold);
     Q_PROPERTY(int precision READ precision WRITE setPrecision);
     Q_PROPERTY(QString label READ label WRITE setLabel);
+    Q_PROPERTY(QString units READ units WRITE setUnits);
     Q_PROPERTY(int steps READ steps WRITE setSteps);
 
     Q_PROPERTY(int startAngle READ startAngle WRITE setStartAngle);
@@ -109,6 +110,14 @@ public:
   \return The Label
 */
     QString label()const { return m_label; }
+
+/*!
+  \return The Label
+*/
+    QString units()const { return m_units; }
+
+
+
 /*!
   \return The number of steps in the widget scale
 */
@@ -229,6 +238,11 @@ public slots:
     void setLabel(QString);
 
 /*!
+  \slots This slot is used to set the units in the QMeter widget.
+*/
+    void setUnits(QString);
+
+/*!
   \slots This slot is used to set the number of spets in the QMeter scale.
 */
     void setSteps(int);
@@ -296,12 +310,14 @@ private:
     void drawCircularBar(QPainter *painter);
     void drawCoverGlass(QPainter *painter);
     void drawLabel(QPainter *painter);
+    void drawUnits(QPainter *painter);
     void drawThresholdLine(QPainter *painter);
 
     double m_value;
     double m_maxValue, m_minValue;
     int m_precision;
     QString m_label;
+    QString m_units;
     int m_steps;
     int m_barSize;
     int m_startAngle,m_endAngle;

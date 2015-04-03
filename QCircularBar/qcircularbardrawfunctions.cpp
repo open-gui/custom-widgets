@@ -41,7 +41,7 @@ void QCircularBar::drawCrown(QPainter *painter)
     QPen pen;
     QBrush brush=QBrush(linearGrad);
     pen.setBrush(brush);
-    pen.setWidth(5);
+    pen.setWidth(3);
     painter->setPen(pen);
     painter->drawArc(rectangle, startAngle, spanAngle);
     painter->restore();
@@ -160,16 +160,18 @@ void QCircularBar::drawCircularBar(QPainter *painter)
 //        }
     }
 
+
+
+
 }
 
 
 void QCircularBar::drawLabel(QPainter *painter)
 {
     painter->save();
-/*    QFont font;
-    font.setPixelSize(10);
-    font.setBold(true);
-    setFont(font)*/;
+
+    QRectF labelRect=QRectF(-15,20,30,20);
+
     if(isEnabled())
     {
         painter->setBrush(m_foreground);
@@ -180,8 +182,31 @@ void QCircularBar::drawLabel(QPainter *painter)
         painter->setBrush(Qt::gray);
         painter->setPen(Qt::gray);
     }
-    QRectF labelRect=QRectF(-15,20,30,20);
+
     painter->drawText(labelRect,Qt::AlignCenter, m_label);
     painter->restore();
 }
+
+
+void QCircularBar::drawUnits(QPainter *painter)
+{
+    painter->save();
+
+    QRectF unitsRect=QRectF(-20,-30,40,20);
+
+    if(isEnabled())
+    {
+        painter->setBrush(m_foreground);
+        painter->setPen(m_foreground);
+    }
+    else
+    {
+        painter->setBrush(Qt::gray);
+        painter->setPen(Qt::gray);
+    }
+
+    painter->drawText(unitsRect,Qt::AlignCenter, m_units);
+    painter->restore();
+}
+
 

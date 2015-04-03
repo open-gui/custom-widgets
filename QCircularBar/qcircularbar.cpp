@@ -48,6 +48,7 @@ QCircularBar::QCircularBar(QWidget *parent)
    setSteps(20);
    setBarSize(5);
    setMinimumSize(QSize(80,80));
+   setMaximumSize(QSize(1024,1024));
    setStartAngle(225);
    setEndAngle(-45);
    setForeground(QColor(0, 166, 8));
@@ -67,6 +68,7 @@ QCircularBar::QCircularBar(QWidget *parent)
    setDigitCount(5);
    setValue(0);
    setLabel("Label");
+   setUnits("%");
    setThreshold(80);
    setCircularBarEnabled(true);
    setCoverGlassEnabled(true);
@@ -166,6 +168,9 @@ void QCircularBar::setValue(double value)
 
 int QCircularBar::digitCount() const
 {
+    if(m_autodigits)
+        return -1;
+
     if(m_lcd)
         return m_lcd->digitCount();
     else
@@ -243,6 +248,11 @@ void QCircularBar::setLabel(QString label)
     update();
 }
 
+void QCircularBar::setUnits(QString units)
+{
+    m_units=units;
+    update();
+}
 
 void QCircularBar::setDigitCount(int n_digits)
 {
@@ -252,14 +262,17 @@ void QCircularBar::setDigitCount(int n_digits)
             m_lcd->setDigitCount(n_digits);
     }
     else
-            m_autodigits=true;
+            m_autodigits=true;    
 }
 
 
 void QCircularBar::resizeEvent(QResizeEvent *event)
 {
     Q_UNUSED(event);
-    m_lcd->setGeometry(width()/2-width()/4,height()/2-height()/6,width()/2,height()/3);
+
+    int side = qMin(width(), height());
+    m_lcd->setGeometry(width()/2-side/4,height()/2-side/6,side/2,side/3);
+    update();
 }
 
 
@@ -294,6 +307,7 @@ void QCircularBar::paintEvent(QPaintEvent *event)
     if(coverGlassEnabled())
         drawCoverGlass(&painter);
     drawLabel(&painter);
+    drawUnits(&painter);
     drawCrown(&painter);
     if(thresholdEnabled())
         drawThresholdLine(&painter);
